@@ -9,6 +9,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,6 +19,8 @@ public class ExchangeService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeService.class);
 
+	@Value("${exchange.api}")
+	private String url;
 	/**
 	 * https://github.com/exchangeratesapi/exchangeratesapi
 	 *
@@ -51,8 +54,7 @@ public class ExchangeService {
 			});
 
 			HttpResponse<ExchangeRatesApiResponse> resObj =
-					Unirest.get("https://api.exchangeratesapi.io/latest")
-							.queryString("base",src)
+					Unirest.get(url).queryString("base",src)
 							.asObject(ExchangeRatesApiResponse.class);
 			ExchangeRatesApiResponse exchangeRatesApiResponse = resObj.getBody();
 			exchangeOutput =
