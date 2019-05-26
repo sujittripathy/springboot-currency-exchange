@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 public class ExchangeInput {
-	@CurrencyValidation(message = "Source currency is not valid")
+	@CurrencyValidation
 	private String sourceCurrency;
 
-	@CurrencyValidation(message = "Destination currency is not valid")
+	@CurrencyValidation
 	private String destinationCurrency;
 }

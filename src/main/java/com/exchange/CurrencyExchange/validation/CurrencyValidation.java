@@ -16,14 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = {CurrencyValidator.class})
 public @interface CurrencyValidation {
 
-	String message() default "Invalid Currency";
+	String message() default "{com.exchange.CurrencyExchange.validation.CurrencyValidation.message}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
-
-	@Target(METHOD)
-	@Retention(RUNTIME)
-	@Documented
-	@interface List {
-		CurrencyValidation[] value();
-	}
 }
